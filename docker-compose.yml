@@ -1,0 +1,21 @@
+version: '3'
+services:
+  php:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www/html
+    links:
+      - bancodedados
+  bancodedados:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: bd_teste
+      MYSQL_USER: user_teste
+      MYSQL_PASSWORD: q1w2e3r4
+      MYSQL_ROOT_PASSWORD: q1w2e3r4t5
